@@ -1,30 +1,30 @@
 # DFA Visualizer
 
-Interaktywny, krok-po-kroku wizualizator działania deterministycznego automatu skończonego (DFA), akceptujący słowa zawierające dokładnie dwa wystąpienia "11", napisany w Javie (Swing, Java2D). Pozwala wprowadzić słowo binarne i przechodzić krok po kroku przez kolejne przejścia automatu, widząc na żywo, który stan jest aktywny.
+An interactive, step-by-step visualizer for a deterministic finite automaton (DFA), built in Java (Swing, Java2D). Enter a binary word and step through the automaton's transitions one at a time, watching the currently active state highlighted live.
 
-> **Uwaga dot. zakresu:** to jest demo skonkretnego, zahardkodowanego automatu - **nie** generyczny wizualizator wczytujący dowolne DFA z pliku. Definicja stanów i przejść (w tym sam rysunek grafu) jest zapisana na sztywno w kodzie pod ten jeden konkretny automat. Świadoma decyzja: projekt miał demonstrować wizualizację działania DFA, a nie być uniwersalnym narzędziem.
+> **Scope note:** this is a demo of one specific, hardcoded automaton - **not** a generic visualizer that loads any DFA from a file. The state/transition definitions (including the graph drawing itself) are hardcoded for this one automaton. This was a deliberate choice: the goal was to demonstrate DFA execution visually, not to build a general-purpose tool.
 
 ![dfa-visualizer](docs/screenshot.png)
 
-## Automat
+## The automaton
 
-Automat akceptuje słowa binarne (alfabet `{0, 1}`) zawierające **dokładnie dwa wystąpienia** podciągu `"11"`.
+The automaton accepts binary words (alphabet `{0, 1}`) containing **exactly two occurrences** of the substring `"11"`.
 
-- 7 stanów: `q0`–`q6`
-- Stany akceptujące: `q4`, `q5`
-- `q6` to stan pułapka (trzecie wystąpienie `"11"` → odrzucenie, bez powrotu)
+- 7 states: `q0`–`q6`
+- Accepting states: `q4`, `q5`
+- `q6` is a trap state (a third occurrence of `"11"` → reject, no way back)
 
-## Funkcje
+## Features
 
-- Wprowadzanie dowolnego słowa binarnego (walidacja wejścia — akceptuje tylko `0` i `1`)
-- Krok po kroku: przyciski **Poprzedni / Następny**, podświetlenie aktualnego stanu
-- Kolorowe oznaczenie wyniku po przetworzeniu całego słowa (zaakceptowane / odrzucone)
-- Zakrzywione strzałki przejść (krzywe Béziera) i pętle własne dla przejść do tego samego stanu
-- Wizualne rozróżnienie stanów akceptujących (podwójny okrąg)
+- Enter any binary word (input validation — only `0` and `1` accepted)
+- Step-by-step navigation: **Previous / Next** buttons, current state highlighted
+- Color-coded result once the whole word has been processed (accepted / rejected)
+- Curved transition arrows (Bézier curves) and self-loops for transitions back to the same state
+- Visual distinction for accepting states (double circle)
 
-## Uruchomienie
+## Running it
 
-Wymaga JDK (testowane na Java 21).
+Requires a JDK (tested on Java 21).
 
 ```bash
 javac *.java
@@ -35,8 +35,8 @@ java DFAVisualizer
 
 - Java
 - Swing (GUI)
-- Java2D (`Graphics2D`, `QuadCurve2D` — rysowanie grafu automatu)
+- Java2D (`Graphics2D`, `QuadCurve2D` — drawing the automaton graph)
 
-## Możliwy dalszy rozwój
+## Possible next steps
 
-Naturalnym następnym krokiem byłoby uogólnienie wizualizatora: wczytywanie definicji dowolnego automatu z pliku (JSON/tekst - stany, przejścia, stany akceptujące) zamiast hardkodowania, wraz z automatycznym rozmieszczaniem stanów na płótnie.
+A natural next step would be generalizing the visualizer: loading any automaton definition from a file (JSON/text — states, transitions, accepting states) instead of hardcoding it, along with automatic state layout on the canvas.
